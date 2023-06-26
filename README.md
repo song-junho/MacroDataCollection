@@ -232,3 +232,9 @@
  - 종류: 경기 지표 (GDP, 물가, 제조업지수, 무역수지, 실업률 등)
 
 
+### OutPutSample
+> key(Ticker) - Value(DataFrame) 형식
+
+ex) Ticker: T10TFF (미국채 10년 - 기준금리 스프레드)  
+  ![image](https://github.com/song-junho/MacroDataCollection/assets/67362481/4b613a6c-e975-4a4a-bbd6-c6ebb5b5161d)
+
