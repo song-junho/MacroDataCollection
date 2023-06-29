@@ -42,6 +42,8 @@ class FiccData:
             df = self.ecos.get_statistic_search(통계표코드=ticker_info["stat_cd"], 통계항목코드1=ticker, 주기=ticker_info["freq"].upper(),
                                           검색시작일자="20000101", 검색종료일자="20230701")
             df = df[["시점", "값"]].rename(columns={"시점": "date", "값": "val"})
+            df["val"] = df["val"].astype("float")
+            df["date"] = pd.to_datetime(df["date"])
             df = df.set_index("date")
 
         return df
