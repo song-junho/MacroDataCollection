@@ -1,2 +1,1 @@
-from .ficc_data import *
-from .economy_data import *
+from .macro_data import *

@@ -1,5 +1,5 @@
-from macro_data import FiccData
+from macro_data import MacroData
 
 if __name__ == "__main__":
 
-    FiccData().run()
+    MacroData().run()

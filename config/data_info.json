@@ -74,7 +74,6 @@
             }
             , "0101000": {"stat_cd": "722Y001", "name": "한국은행 기준금리", "freq": "d", "release": "eos"}
             , "010190000": {"stat_cd": "817Y002", "name": "국고채(1년)", "freq": "d", "release": "eos"}
-            , "010195000": {"stat_cd": "817Y002", "name": "국고채(2년)", "freq": "d", "release": "eos"}
             , "010200000": {"stat_cd": "817Y002", "name": "국고채(3년)", "freq": "d", "release": "eos"}
             , "010200001": {"stat_cd": "817Y002", "name": "국고채(5년)", "freq": "d", "release": "eos"}
             , "010210000": {"stat_cd": "817Y002", "name": "국고채(10년)", "freq": "d", "release": "eos"}
@@ -215,6 +214,113 @@
                 , "freq": "d"
                 , "release": "yahoo"
             }
+        }
+    },
+    "ECONMIC_INFO" : {
+        "fixed_income": {
+        }
+    },
+
+    "ECONOMIC_INFO" : {
+        "global": {
+
+        }
+        ,"usa":{
+            "GDP": {
+                "name": "Gross Domestic Product"
+                , "freq": "q"
+                , "data_type": "raw"
+                , "release": "fred"
+            }
+            ,"GDPC1": {
+                "name": "Real Gross Domestic Product"
+                , "freq": "q"
+                , "data_type": "raw"
+                , "release": "fred"
+            }
+            ,"M2SL": {
+                "name": "M2"
+                , "freq": "m"
+                , "data_type": "raw"
+                , "release": "fred"
+            }
+            ,"PSAVERT": {
+                "name": "Personal Saving Rate"
+                , "freq": "m"
+                , "data_type": "raw"
+                , "release": "fred"
+            }
+            ,"UNRATE": {
+                "name": "Unemployment Rate"
+                , "freq": "m"
+                , "data_type": "raw"
+                , "release": "fred"
+            }
+            ,"CIVPART": {
+                "name": "Labor Force Participation Rate"
+                , "freq": "m"
+                , "data_type": "raw"
+                , "release": "fred"
+            }
+            ,"CPIAUCSL": {
+                "name": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average"
+                , "freq": "m"
+                , "data_type": "raw"
+                , "release": "fred"
+            }
+            ,"PCE": {
+                "name": "Personal Consumption Expenditures"
+                , "freq": "m"
+                , "data_type": "raw"
+                , "release": "fred"
+            }
+            ,"MEDCPIM158SFRBCLE": {
+                "name": "Median Consumer Price Index"
+                , "freq": "m"
+                , "data_type": "raw"
+                , "release": "fred"
+            }
+            ,"CSUSHPINSA": {
+                "name": "S&P/Case-Shiller U.S. National Home Price Index"
+                , "freq": "m"
+                , "data_type": "pct_chg_yoy"
+                , "release": "fred"
+            }
+            ,"T10YIE": {
+                "name": "10-Year Breakeven Inflation Rate"
+                , "freq": "d"
+                , "data_type": "raw"
+                , "release": "fred"
+            }
+            ,"CORESTICKM159SFRBATL": {
+                "name": "Sticky Price Consumer Price Index less Food and Energy"
+                , "freq": "m"
+                , "data_type": "pct_chg_yoy"
+                , "release": "fred"
+            }
+            ,"UMCSENT": {
+                "name": "University of Michigan: Consumer Sentiment"
+                , "freq": "m"
+                , "data_type": "raw"
+                , "release": "fred"
+            }
+        }
+        ,"korea":{
+                "SA000": {"stat_cd": "301Y017", "name": "경상수지(계절조정)", "freq": "m", "release": "eos"}
+                ,"FIEE": {"stat_cd": "901Y011", "name": "수출총액", "freq": "m", "release": "eos"}
+                ,"0": {"stat_cd": "901Y009", "name": "CPI", "freq": "m", "release": "eos"}
+                ,"*AA": {"stat_cd": "404Y014", "name": "PPI", "freq": "m", "release": "eos"}
+                ,"I351": {"stat_cd": "901Y018", "name": "기계수주액", "freq": "m", "release": "eos"}
+                ,"I35A": {"stat_cd": "901Y018", "name": "기계수주액(선박제외)", "freq": "m", "release": "eos"}
+                ,"I351BB": {"stat_cd": "901Y018", "name": "특수산업용기계", "freq": "m", "release": "eos"}
+                ,"I42A": {"stat_cd": "901Y020", "name": "건설수주총액", "freq": "m", "release": "eos"}
+                ,"ALL": {"stat_cd": "901Y105", "name": "주택건설인허가", "freq": "m", "release": "eos"}
+        }
+        ,"china":{
+
+        }
+        ,"eu":{
+
         }
     }
 }
