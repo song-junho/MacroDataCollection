@@ -51,6 +51,7 @@ class MacroData:
                 df["date"] = df["date"].apply(
                     lambda x: x[:4] + "-" + x[4:6] + "-" + str(calendar.monthrange(int(x[:4]), int(x[4:6]))[1]))
                 df["date"] = pd.to_datetime(df["date"])
+                df = df.drop_duplicates("date", keep="last")
 
                 df = df.set_index('date')
 
@@ -103,6 +104,22 @@ class MacroData:
             elif ticker_info["freq"] == "q":
 
                 pass
+
+            df = df.drop_duplicates("date", keep="last")
+            df = df.set_index("date")
+
+        # yoy 변화값 추가
+        if ticker_info["freq"] == "m":
+            # 월간 데이터의 경우 기본으로  yoy 비교 데이터를 넣는다.
+            # 대부분 economic 데이터인데, 원데이터 자체를 분석에 활용하기 부적절하기 떄문
+            # 기본 raw data 타입이 'rate' , 'sentiment' 같은 부류인 경우는 yoy가 필요하진 않다.
+            df["pct_chg"] = df["val"].pct_change(12)
+
+        if ticker_info["freq"] == "q":
+            # 월간 데이터의 경우 기본으로  yoy 비교 데이터를 넣는다.
+            # 대부분 economic 데이터인데, 원데이터 자체를 분석에 활용하기 부적절하기 떄문
+            # 기본 raw data 타입이 'rate' , 'sentiment' 같은 부류인 경우는 yoy가 필요하진 않다.
+            df["pct_chg"] = df["val"].pct_change(4)
 
         return df
 

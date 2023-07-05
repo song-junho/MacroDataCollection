@@ -79,7 +79,6 @@
             , "010210000": {"stat_cd": "817Y002", "name": "국고채(10년)", "freq": "d", "release": "eos"}
             , "010220000": {"stat_cd": "817Y002", "name": "국고채(20년)", "freq": "d", "release": "eos"}
             , "010230000": {"stat_cd": "817Y002", "name": "국고채(30년)", "freq": "d", "release": "eos"}
-            , "010240000": {"stat_cd": "817Y002", "name": "국고채(50년)", "freq": "d", "release": "eos"}
             , "010300000": {"stat_cd": "817Y002", "name": "회사채(3년, AA-)", "freq": "d", "release": "eos"}
             , "010310000": {"stat_cd": "817Y002", "name": "회사채(3년, AA-, 민평)", "freq": "d", "release": "eos"}
             , "010320000": {"stat_cd": "817Y002", "name": "회사채(3년, BBB-)", "freq": "d", "release": "eos"}
