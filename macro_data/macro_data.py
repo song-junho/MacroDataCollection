@@ -7,6 +7,7 @@ from PublicDataReader import Ecos
 from .config import API_KEY, DATA_INFO
 import calendar
 from datetime import datetime
+import time
 
 
 class MacroData:
@@ -37,7 +38,20 @@ class MacroData:
         df = pd.DataFrame()
 
         if ticker_info["release"] == "fred":
-            df = self.fred.get_series(ticker)
+            if ticker_info["release"] == "fred":
+
+                # http 에러 간혹 발생
+                i = 0
+                while 1:
+                    try:
+                        df = self.fred.get_series(ticker)
+                        break
+                    except:
+                        if i > 10:
+                            break
+                        else:
+                            i += 1
+                            continue
 
             # 전처리
             df = pd.DataFrame(df)
@@ -67,6 +81,7 @@ class MacroData:
         elif ticker_info["release"] == "eos":
 
             today = datetime.today()
+            time.sleep(0.5)
 
             if ticker_info["freq"] == "d":
 
@@ -86,12 +101,41 @@ class MacroData:
 
                 end_date = str(today.year + 1) + "Q4"
 
-            df = self.ecos.get_statistic_search(통계표코드=ticker_info["stat_cd"], 통계항목코드1=ticker, 주기=ticker_info["freq"].upper(),
+            # 품목별 수출 데이터인 경우
+            if ticker_info["stat_cd"] == "901Y039":
+
+                product_key = ticker.split("_")[0]
+                type_key = ticker.split("_")[1]
+
+                if type_key == "T00":
+
+                    df = self.dict_macro_data["ECONOMIC_INFO"]["korea"]
+
+                    df_0 = df[product_key + "_" + "T41"].reset_index()
+                    df_1 = df[product_key + "_" + "T42"].reset_index()
+
+                    df_merge = pd.merge(left=df_0, right=df_1, on="date", how="left")
+                    df_merge["ratio"] = df_merge["val_y"] / df_merge["val_x"]
+                    df = df_merge[["date", "ratio"]].rename(columns={"ratio": "val"})
+                    df["date"] = df["date"].apply(lambda x: x.strftime("%Y%m"))
+
+                else:
+
+                    df = self.ecos.get_statistic_search(통계표코드=ticker_info["stat_cd"], 통계항목코드1=product_key, 통계항목코드2=type_key, 주기="M",
+                                                  검색시작일자=start_date, 검색종료일자=end_date)
+
+                    df = df[["시점", "값"]].rename(columns={"시점": "date", "값": "val"})
+
+                    df["val"] = df["val"].astype("float")
+
+            else:
+
+                df = self.ecos.get_statistic_search(통계표코드=ticker_info["stat_cd"], 통계항목코드1=ticker, 주기=ticker_info["freq"].upper(),
                                           검색시작일자=start_date, 검색종료일자=end_date)
 
-            df = df[["시점", "값"]].rename(columns={"시점": "date", "값": "val"})
+                df = df[["시점", "값"]].rename(columns={"시점": "date", "값": "val"})
 
-            df["val"] = df["val"].astype("float")
+                df["val"] = df["val"].astype("float")
 
             # 일자 데이터 형변환
             if (ticker_info["freq"] == "d") or (ticker_info["freq"] == "m"):
